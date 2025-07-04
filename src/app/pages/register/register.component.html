@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow p-4 mt-5">
+      <h4 class="text-center mb-3">Placement Officer Registration</h4>
+
+      <form (ngSubmit)="register()" #registerForm="ngForm" novalidate>
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            id="username"
+            class="form-control"
+            name="username"
+            [(ngModel)]="username"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            name="password"
+            [(ngModel)]="password"
+            required
+          />
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid">
+            Register
+          </button>
+        </div>
+      </form>
+
+      <div class="text-success text-center mt-3" *ngIf="successMessage">
+        {{ successMessage }}
+      </div>
+    </div>
+  </div>
+</div>

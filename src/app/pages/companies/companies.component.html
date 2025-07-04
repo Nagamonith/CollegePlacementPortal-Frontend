@@ -1,0 +1,92 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Company Management</h2>
+
+  <!-- Add Company Form -->
+  <form (ngSubmit)="createCompany()" #companyForm="ngForm" class="mb-4">
+    <div class="row g-3">
+
+      <div class="col-md-6">
+        <input type="text" class="form-control" name="name" [(ngModel)]="newCompany.name" placeholder="Company Name" required>
+      </div>
+
+      <div class="col-md-6">
+        <input type="text" class="form-control" name="jobRole" [(ngModel)]="newCompany.jobRole" placeholder="Job Role" required>
+      </div>
+
+      <div class="col-md-4">
+        <input type="number" class="form-control" name="package" [(ngModel)]="newCompany.package" placeholder="Package (LPA)" min="0" required>
+      </div>
+
+      <div class="col-md-4">
+        <input type="number" class="form-control" name="requiredCGPA" [(ngModel)]="newCompany.requiredCGPA" placeholder="Required CGPA" min="0" max="10" step="0.1" required>
+      </div>
+
+      <div class="col-md-4">
+        <input type="number" class="form-control" name="allowedBacklogs" [(ngModel)]="newCompany.allowedBacklogs" placeholder="Allowed Backlogs" min="0" required>
+      </div>
+
+      <div class="col-md-6">
+        <input type="number" class="form-control" name="eligiblePassoutYear" [(ngModel)]="newCompany.eligiblePassoutYear" placeholder="Eligible Passout Year" required>
+      </div>
+
+      <div class="col-md-6">
+        <input type="text" class="form-control" name="requiredSkills" [(ngModel)]="newCompany.requiredSkills" placeholder="Required Skills (comma-separated)" required>
+      </div>
+
+      <div class="col-md-6">
+        <input type="text" class="form-control" name="category" [(ngModel)]="newCompany.category" placeholder="Category" required>
+      </div>
+
+      <div class="col-md-6">
+        <input type="text" class="form-control" name="location" [(ngModel)]="newCompany.location" placeholder="Location" required>
+      </div>
+
+      <div class="col-12">
+        <textarea class="form-control" name="description" [(ngModel)]="newCompany.description" placeholder="Description" required></textarea>
+      </div>
+    </div>
+
+    <button class="btn btn-primary mt-3" type="submit" [disabled]="companyForm.invalid">Add Company</button>
+  </form>
+
+  <hr>
+
+  <!-- Display Company List -->
+  <h3 class="mb-3">Company List</h3>
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+  <tr>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Role</th>
+    <th>Package (LPA)</th>
+    <th>Required CGPA</th>
+    <th>Backlogs</th>
+    <th>Passout Year</th>
+    <th>Skills</th>
+    <th>Location</th>
+    <th>Description</th>
+    <th>Actions</th> <!-- ✅ Add this -->
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let company of companies">
+    <td>{{ company.name }}</td>
+    <td>{{ company.category }}</td>
+    <td>{{ company.jobRole }}</td>
+    <td>{{ company.package }}</td>
+    <td>{{ company.requiredCGPA }}</td>
+    <td>{{ company.allowedBacklogs }}</td>
+    <td>{{ company.eligiblePassoutYear }}</td>
+    <td>{{ company.requiredSkills }}</td>
+    <td>{{ company.location }}</td>
+    <td>{{ company.description }}</td>
+    <td>
+      <button class="btn btn-sm btn-warning me-2" (click)="editCompany(company)">Edit</button>
+      <button class="btn btn-sm btn-danger" (click)="deleteCompany(company.companyId)">Delete</button>
+    </td>
+  </tr>
+</tbody>
+
+  </table>
+</div>
