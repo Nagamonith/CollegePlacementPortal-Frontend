@@ -1,15 +1,22 @@
-<!-- app.component.html -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-4 shadow-sm mb-4">
-  <a class="navbar-brand fw-bold" routerLink="/" style="font-size: 1.4rem;">
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar px-4 shadow-sm mb-4">
+  <a class="navbar-brand fw-bold" routerLink="/" style="font-size: 1.6rem; letter-spacing: 0.05em;">
     🎓 College Placement Portal
   </a>
 
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+  <button
+    class="navbar-toggler custom-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ms-auto">
+    <ul class="navbar-nav ms-auto custom-nav-links">
       <li class="nav-item">
         <a class="nav-link" routerLink="/students" routerLinkActive="active">Students</a>
       </li>
@@ -19,9 +26,7 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/filter" routerLinkActive="active">Filter</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/export" routerLinkActive="active">Export</a>
-      </li>
+      <!-- Export option removed -->
     </ul>
   </div>
 </nav>

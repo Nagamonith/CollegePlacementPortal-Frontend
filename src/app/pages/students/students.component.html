@@ -1,76 +1,100 @@
-<div class="container mt-4">
-  <div class="card shadow p-4 mb-4">
-    <h4 class="mb-3 text-primary fw-semibold">{{ isEdit ? 'Edit Student' : 'Add New Student' }}</h4>
+<div class="container mt-5">
 
-    <form (ngSubmit)="submit()">
-      <div class="row row-cols-1 row-cols-md-2 g-3">
+  <!-- Form Section with subtle background -->
+  <section class="section-container mb-5 p-4 rounded">
+    <h4 class="mb-4 text-primary fw-semibold">{{ isEdit ? 'Edit Student' : 'Add New Student' }}</h4>
+
+    <form (ngSubmit)="submit()" novalidate>
+      <div class="row row-cols-1 row-cols-md-2 g-4">
         <div>
           <label class="form-label">Name</label>
-          <input [(ngModel)]="student.name" name="name" class="form-control" placeholder="Full Name" required>
+          <input [(ngModel)]="student.name" name="name" class="form-control form-control-lg" placeholder="Full Name" required />
         </div>
 
         <div>
           <label class="form-label">Branch</label>
-          <input [(ngModel)]="student.branch" name="branch" class="form-control" placeholder="Branch" required>
+          <input [(ngModel)]="student.branch" name="branch" class="form-control form-control-lg" placeholder="Branch" required />
         </div>
 
         <div>
           <label class="form-label">CGPA</label>
-          <input [(ngModel)]="student.cgpa" name="cgpa" type="number" class="form-control" placeholder="CGPA" required>
+          <input
+            [(ngModel)]="student.cgpa"
+            name="cgpa"
+            type="number"
+            class="form-control form-control-lg"
+            placeholder="CGPA"
+            required
+          />
         </div>
 
         <div>
           <label class="form-label">Phone</label>
-          <input [(ngModel)]="student.phone" name="Phone" class="form-control" placeholder="Phone Number" required>
+          <input [(ngModel)]="student.phone" name="phone" class="form-control form-control-lg" placeholder="Phone Number" required />
         </div>
 
         <div>
           <label class="form-label">Email</label>
-          <input [(ngModel)]="student.email" name="Email" type="email" class="form-control" placeholder="Email Address" required>
+          <input
+            [(ngModel)]="student.email"
+            name="email"
+            type="email"
+            class="form-control form-control-lg"
+            placeholder="Email Address"
+            required
+          />
         </div>
 
         <div>
           <label class="form-label">Skills</label>
-          <input [(ngModel)]="student.skills" name="skills" class="form-control" placeholder="Skills (comma-separated)" required>
+          <input [(ngModel)]="student.skills" name="skills" class="form-control form-control-lg" placeholder="Skills (comma-separated)" required />
         </div>
 
         <div>
           <label class="form-label">Backlogs</label>
-          <input [(ngModel)]="student.backlogs" name="backlogs" type="number" class="form-control" required>
+          <input [(ngModel)]="student.backlogs" name="backlogs" type="number" class="form-control form-control-lg" required />
         </div>
 
         <div>
           <label class="form-label">Passout Year</label>
-          <input [(ngModel)]="student.passoutYear" name="passoutYear" type="number" class="form-control" required>
+          <input
+            [(ngModel)]="student.passoutYear"
+            name="passoutYear"
+            type="number"
+            class="form-control form-control-lg"
+            required
+          />
         </div>
 
         <div class="col-12">
           <label class="form-label">Upload Resume</label>
-          <input type="file" class="form-control" (change)="onFileChange($event)">
+          <input type="file" class="form-control form-control-lg" (change)="onFileChange($event)" />
         </div>
       </div>
 
-      <div class="mt-4 d-flex gap-2">
-        <button class="btn btn-success">{{ isEdit ? 'Update' : 'Add' }} Student</button>
-        <button class="btn btn-secondary" type="button" (click)="resetForm()" *ngIf="isEdit">Cancel</button>
+      <div class="mt-4 d-flex gap-3 flex-wrap">
+        <button class="btn btn-success btn-lg px-4" type="submit">{{ isEdit ? 'Update' : 'Add' }} Student</button>
+        <button *ngIf="isEdit" type="button" class="btn btn-secondary btn-lg px-4" (click)="resetForm()">Cancel</button>
       </div>
     </form>
 
-    <div class="text-success mt-3 fw-semibold" *ngIf="message">{{ message }}</div>
-  </div>
+    <div *ngIf="message" class="mt-3 text-success fw-semibold">{{ message }}</div>
+  </section>
 
-  <div class="card shadow p-4">
-    <h4 class="mb-3 text-primary fw-semibold">All Students</h4>
+  <!-- Table Section with sticky headers -->
+  <section class="section-container p-4 rounded">
+    <h4 class="mb-4 text-primary fw-semibold">All Students</h4>
+
     <div class="table-responsive">
-      <table class="table table-bordered align-middle text-center">
-        <thead class="table-light">
+      <table class="table table-bordered align-middle text-center table-hover table-striped">
+        <thead class="table-light sticky-header">
           <tr>
             <th>Name</th>
             <th>Branch</th>
             <th>CGPA</th>
             <th>Email</th>
             <th>Phone</th>
-            <th style="width: 150px;">Actions</th>
+            <th style="min-width: 150px;">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -81,12 +105,12 @@
             <td>{{ s.email }}</td>
             <td>{{ s.phone }}</td>
             <td>
-              <button class="btn btn-sm btn-outline-info me-1" (click)="edit(s)">Edit</button>
+              <button class="btn btn-sm btn-outline-info me-2" (click)="edit(s)">Edit</button>
               <button class="btn btn-sm btn-outline-danger" (click)="delete(s.studentId)">Delete</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-  </div>
+  </section>
 </div>

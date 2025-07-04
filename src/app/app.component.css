@@ -1,0 +1,81 @@
+/* Navbar gradient background */
+.custom-navbar {
+  background: linear-gradient(90deg, #0052d4, #4364f7, #6fb1fc);
+  box-shadow: 0 4px 12px rgba(0, 82, 212, 0.4);
+}
+
+/* Brand styling */
+.navbar-brand {
+  color: #e0e7ff;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+  color: #f0f6ff;
+  text-shadow: 0 0 6px #a9bfff;
+}
+
+/* Navbar toggler button */
+.custom-toggler {
+  border: 2px solid #a9bfff;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.custom-toggler:hover,
+.custom-toggler:focus {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: #d0d9ff;
+}
+
+/* Nav links container */
+.custom-nav-links .nav-link {
+  color: #dbe4ff;
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+  position: relative;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+/* Hover underline animation */
+.custom-nav-links .nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background-color: #a9bfff;
+  transition: width 0.3s ease;
+  border-radius: 3px;
+}
+
+/* On hover, show underline */
+.custom-nav-links .nav-link:hover::after,
+.custom-nav-links .nav-link.active::after {
+  width: 100%;
+}
+
+/* Change color on hover and active */
+.custom-nav-links .nav-link:hover,
+.custom-nav-links .nav-link.active {
+  color: #f0f6ff;
+  text-shadow: 0 0 6px #a9bfff;
+}
+
+/* Responsive fix: center navbar items on small screens */
+@media (max-width: 767px) {
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .custom-nav-links .nav-link {
+    padding: 0.75rem 0;
+  }
+}
