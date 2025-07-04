@@ -1,56 +1,69 @@
-<div class="container mt-4">
-  <h2 class="mb-4">Filter Eligible Students</h2>
+<div class="container mt-5">
 
-  <!-- Company Dropdown -->
-  <div class="mb-3">
-    <label for="companySelect" class="form-label">Select a Company</label>
-    <select id="companySelect" class="form-select" [(ngModel)]="selectedCompanyId" (change)="onCompanyChange()" name="companyId" required>
-      <option [ngValue]="null">-- Choose a company --</option>
-      <option *ngFor="let company of companies" [ngValue]="company.companyId">
-        {{ company.name }}
-      </option>
-    </select>
-  </div>
+  <!-- Section Heading -->
+  <section class="section-container mb-5 p-4 rounded">
+    <h4 class="mb-4 text-primary fw-semibold">Filter Eligible Students</h4>
 
-  <!-- Selected Company Details -->
-  <div *ngIf="selectedCompany" class="card p-3 mb-4 shadow-sm">
-    <h5>Company Details</h5>
-    <p><strong>Name:</strong> {{ selectedCompany.name }}</p>
-    <p><strong>Role:</strong> {{ selectedCompany.jobRole }}</p>
-    <p><strong>Package:</strong> ₹{{ selectedCompany.package }} LPA</p>
-  </div>
+    <!-- Company Dropdown -->
+    <div class="mb-4">
+      <label for="companySelect" class="form-label fw-medium">Select a Company</label>
+      <select id="companySelect" class="form-select form-select-lg" [(ngModel)]="selectedCompanyId" (change)="onCompanyChange()" name="companyId" required>
+        <option [ngValue]="null">-- Choose a company --</option>
+        <option *ngFor="let company of companies" [ngValue]="company.companyId">
+          {{ company.name }}
+        </option>
+      </select>
+    </div>
 
-  <!-- Filter Button -->
-  <button class="btn btn-primary mb-4" (click)="filterStudents()" [disabled]="!selectedCompanyId">Filter Eligible Students</button>
+    <!-- Company Details (No Card) -->
+    <div *ngIf="selectedCompany" class="mb-4 ps-3 border-start border-3 border-primary-subtle">
+      <p class="mb-1"><strong>Name:</strong> {{ selectedCompany.name }}</p>
+      <p class="mb-1"><strong>Role:</strong> {{ selectedCompany.jobRole }}</p>
+      <p class="mb-0"><strong>Package:</strong> ₹{{ selectedCompany.package }} LPA</p>
+    </div>
+
+    <!-- Filter Button -->
+    <div class="mb-4">
+      <button class="btn btn-primary btn-lg px-4" (click)="filterStudents()" [disabled]="!selectedCompanyId">
+        Filter Eligible Students
+      </button>
+    </div>
+  </section>
 
   <!-- Results Table -->
-  <div *ngIf="showResults">
-    <h4>Eligible Students ({{ eligibleStudents.length }})</h4>
-    <button class="btn btn-success mb-3" (click)="exportToExcel()" [disabled]="eligibleStudents.length === 0">Export to Excel</button>
+  <section *ngIf="showResults" class="section-container p-4 rounded">
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+      <h4 class="text-success fw-semibold mb-0">Eligible Students ({{ eligibleStudents.length }})</h4>
+      <button class="btn btn-success" (click)="exportToExcel()" [disabled]="eligibleStudents.length === 0">
+        Export to Excel
+      </button>
+    </div>
 
-    <table class="table table-bordered table-striped">
-      <thead class="table-dark">
-        <tr>
-          <th>Name</th>
-          <th>Branch</th>
-          <th>CGPA</th>
-          <th>Skills</th>
-          <th>Phone</th>
-          <th>Backlogs</th>
-          <th>Passout Year</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let student of eligibleStudents">
-          <td>{{ student.name }}</td>
-          <td>{{ student.branch }}</td>
-          <td>{{ student.cgpa }}</td>
-          <td>{{ student.skills }}</td>
-          <td>{{ student.phone }}</td>
-          <td>{{ student.backlogs }}</td>
-          <td>{{ student.passoutYear }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-striped align-middle text-center">
+        <thead class="table-light sticky-header">
+          <tr>
+            <th>Name</th>
+            <th>Branch</th>
+            <th>CGPA</th>
+            <th>Skills</th>
+            <th>Phone</th>
+            <th>Backlogs</th>
+            <th>Passout Year</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of eligibleStudents">
+            <td>{{ student.name }}</td>
+            <td>{{ student.branch }}</td>
+            <td>{{ student.cgpa }}</td>
+            <td>{{ student.skills }}</td>
+            <td>{{ student.phone }}</td>
+            <td>{{ student.backlogs }}</td>
+            <td>{{ student.passoutYear }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 </div>

@@ -18,6 +18,7 @@ export class LoginComponent {
   password = '';
   error = '';
   loginError = '';
+loading: any;
 
   constructor(private router: Router, private authService: AuthService) {}
 

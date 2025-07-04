@@ -11,10 +11,18 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
   styleUrls: ['./companies.component.css']
 })
 export class CompaniesComponent {
+resetCompanyForm() {
+throw new Error('Method not implemented.');
+}
+message: any;
+submitCompany() {
+throw new Error('Method not implemented.');
+}
   companies: any[] = [];
   newCompany = this.getEmptyCompany();
   isEditing = false;
   editingCompanyId: number | null = null;
+isEdit: any;
 
   constructor(private http: HttpClient) {}
 
