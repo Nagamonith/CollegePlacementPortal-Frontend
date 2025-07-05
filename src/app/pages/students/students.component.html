@@ -2,7 +2,9 @@
 
   <!-- Form Section with subtle background -->
   <section class="section-container mb-5 p-4 rounded">
-    <h4 class="mb-4 text-primary fw-semibold">{{ isEdit ? 'Edit Student' : 'Add New Student' }}</h4>
+    <h4 class="mb-4 text-primary fw-semibold d-flex align-items-center gap-2">
+  👨‍🎓 {{ isEdit ? 'Edit Student' : 'Add New Student' }}
+</h4>
 
     <form (ngSubmit)="submit()" novalidate>
       <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -83,7 +85,9 @@
 
   <!-- Table Section with sticky headers -->
   <section class="section-container p-4 rounded">
-    <h4 class="mb-4 text-primary fw-semibold">All Students</h4>
+    <h4 class="mb-4 text-primary fw-semibold d-flex align-items-center gap-2">
+  📋 All Students
+</h4>
 
     <div class="table-responsive">
       <table class="table table-bordered align-middle text-center table-hover table-striped">

@@ -16,19 +16,24 @@ throw new Error('Method not implemented.');
 }
 message: any;
 submitCompany() {
-throw new Error('Method not implemented.');
-}
-  companies: any[] = [];
-  newCompany = this.getEmptyCompany();
-  isEditing = false;
-  editingCompanyId: number | null = null;
-isEdit: any;
-
-  constructor(private http: HttpClient) {}
-
-  ngOnInit(): void {
-    this.fetchCompanies();
+  if (this.isEditing && this.editingCompanyId !== null) {
+    this.updateCompany();
+  } else {
+    this.createCompany();
   }
+}
+
+companies: any[] = [];
+newCompany = this.getEmptyCompany();
+isEditing = false;
+editingCompanyId: number | null = null;
+
+constructor(private http: HttpClient) {}
+
+ngOnInit(): void {
+  this.fetchCompanies();
+}
+
 
   getEmptyCompany() {
     return {
@@ -51,12 +56,20 @@ isEdit: any;
     });
   }
 
-  createCompany() {
-    this.http.post<any>('http://localhost:5044/api/company', this.newCompany).subscribe(data => {
-      this.companies.push(data);
-      this.newCompany = this.getEmptyCompany();
-    });
-  }
+ createCompany() {
+  this.http.post<any>('http://localhost:5044/api/company', this.newCompany).subscribe({
+    next: (data) => {
+      this.companies.push(data);                  // Add new company to the list
+      this.newCompany = this.getEmptyCompany();   // Reset form
+      this.message = '✅ Company added successfully!';
+    },
+    error: (err) => {
+      console.error('Error adding company:', err);
+      this.message = '❌ Failed to add company. Please try again.';
+    }
+  });
+}
+
 
   deleteCompany(id: number) {
     if (confirm('Are you sure you want to delete this company?')) {

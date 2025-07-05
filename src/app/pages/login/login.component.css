@@ -1,0 +1,67 @@
+/* Keep all existing styles you provided */
+.custom-navbar {
+  background: linear-gradient(90deg, #206de9, #4364f7, #6fb1fc);
+  box-shadow: 0 4px 12px rgba(0, 82, 212, 0.4);
+}
+
+.navbar-brand {
+  color: #e0e7ff;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+  color: #f0f6ff;
+  text-shadow: 0 0 6px #a9bfff;
+}
+body {
+  background: linear-gradient(135deg, #206de9, #4364f7, #6fb1fc);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Floating Card Style */
+.floating-card {
+  background: rgba(247, 0, 0, 0.05);
+  border: 1px solid rgba(244, 0, 0, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(29, 4, 219, 0.4);
+  animation: float 6s ease-in-out infinite;
+  width: 100%;
+  max-width: 550px;           /* ⬅️ Bigger width */
+  margin-top: 40px;           /* ⬆️ Pushes card higher */
+  padding: 3rem 2.5rem;       /* ⬅️ Bigger inner spacing */
+  transition: transform 0.3s ease;
+}
+
+.floating-card:hover {
+  transform: scale(1.02);     /* 🪄 slight zoom on hover */
+}
+
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Button hover */
+.floating-card .btn-light:hover {
+  background-color: #f0f6ff;
+  color: #205ecf;
+  box-shadow: 0 0 12px #a9bfff;
+}
+
+/* Responsive padding */
+@media (max-width: 576px) {
+  .floating-card {
+    padding: 2rem 1rem;
+  }
+}

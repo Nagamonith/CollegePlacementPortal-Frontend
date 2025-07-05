@@ -1,52 +1,59 @@
-<div class="row justify-content-center">
-  <div class="col-md-4">
-    <div class="card shadow p-4 mt-5">
-      <h4 class="text-center mb-3">Placement Officer Login</h4>
+<!-- Stylish Header Navbar with only Brand -->
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar px-4 shadow-sm mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" routerLink="/" style="font-size: 1.6rem; letter-spacing: 0.05em;">
+      🎓 College Placement Portal
+    </a>
+  </div>
+</nav>
+<div class="container d-flex justify-content-center align-items-start min-vh-100 pt-5">
 
-      <form (ngSubmit)="login()" #loginForm="ngForm" novalidate>
-        <div class="form-group mb-3">
-          <label for="username">Username</label>
-          <input
-            id="username"
-            type="text"
-            class="form-control"
-            [(ngModel)]="username"
-            name="username"
-            autocomplete="username"
-            required
-          />
-        </div>
+  <div class="floating-card p-4">
+    <h3 class="text-center text-white mb-3">Placement Officer Login</h3>
 
-        <div class="form-group mb-3">
-          <label for="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            class="form-control"
-            [(ngModel)]="password"
-            name="password"
-            autocomplete="current-password"
-            required
-          />
-        </div>
-
-        <div class="d-grid">
-          <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
-            Login
-          </button>
-        </div>
-      </form>
-
-      <div class="text-danger mt-2 text-center" *ngIf="error">
-        {{ error }}
+    <form (ngSubmit)="login()" #loginForm="ngForm" novalidate>
+      <div class="form-group mb-3">
+        <label for="username" class="form-label text-white">Username</label>
+        <input
+          id="username"
+          type="text"
+          class="form-control"
+          [(ngModel)]="username"
+          name="username"
+          autocomplete="username"
+          required
+        />
       </div>
 
-      <!-- ✅ Register Link -->
-      <p class="text-center mt-3">
+      <div class="form-group mb-3">
+        <label for="password" class="form-label text-white">Password</label>
+        <input
+          id="password"
+          type="password"
+          class="form-control"
+          [(ngModel)]="password"
+          name="password"
+          autocomplete="current-password"
+          required
+        />
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary fw-bold" [disabled]="loginForm.invalid">
+  Login
+</button>
+
+      </div>
+    </form>
+
+    <div class="text-danger mt-2 text-center" *ngIf="error">
+      {{ error }}
+    </div>
+
+   <p class="text-center text-white mt-3">
   Don’t have an account?
-  <a routerLink="/register" class="text-primary" style="cursor: pointer;">Register here</a>
+  <a routerLink="/register" class="text-success text-decoration-underline">Register here</a>
 </p>
 
-    </div>
   </div>
 </div>
