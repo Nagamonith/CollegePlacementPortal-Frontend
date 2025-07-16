@@ -6,26 +6,56 @@ pool:
   demands:
     - agent.name -equals MONITH
 
+variables:
+  angularProject: 'placement-portal-frontend'
+
 steps:
+# ✅ Install Node.js
 - task: NodeTool@0
   inputs:
     versionSpec: '20.x'
   displayName: 'Install Node.js'
 
+# ✅ Install Angular CLI globally
 - script: |
     npm install -g @angular/cli
   displayName: 'Install Angular CLI'
 
+# ✅ Install project dependencies
 - script: |
     npm install
   displayName: 'Install node_modules'
 
+# ✅ Build Angular App (Production)
 - script: |
     npx ng build --configuration production
   displayName: 'Build Angular App'
 
+# ✅ Run Angular Unit Tests + Generate Code Coverage
+- script: |
+    npx ng test --watch=false --code-coverage --browsers=ChromeHeadless
+  displayName: 'Run Angular Unit Tests'
+
+# ✅ Publish Test Results (.xml from Karma)
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testResultsFormat: JUnit
+    testResultsFiles: '**/test-results.xml'
+    testRunTitle: 'Angular Unit Tests'
+
+# ✅ Publish Code Coverage (Optional but nice)
+- task: PublishCodeCoverageResults@1
+  condition: succeededOrFailed()
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: 'coverage/$(angularProject)/cobertura-coverage.xml'
+    reportDirectory: 'coverage/$(angularProject)'
+    failIfCoverageEmpty: false
+
+# ✅ Publish Angular Build Output as Artifact
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: 'dist/placement-portal-frontend'   # ✅ this must match outputPath
+    PathtoPublish: 'dist/$(angularProject)'
     ArtifactName: 'angular-dist'
     publishLocation: 'Container'
