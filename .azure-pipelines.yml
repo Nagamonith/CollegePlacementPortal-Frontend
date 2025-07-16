@@ -54,6 +54,7 @@ steps:
   displayName: 'Publish Angular Build Output'
 
 - task: PublishBuildArtifacts@1
+  condition: always()  # ✅ Add this line to force artifact publish
   inputs:
     PathtoPublish: 'coverage/$(angularProject)'
     ArtifactName: 'test-report-html'
