@@ -14,11 +14,14 @@ steps:
 
 - script: |
     npm install -g @angular/cli
-    npm install
-  displayName: 'Install dependencies'
+  displayName: 'Install Angular CLI'
 
 - script: |
-    ng build --configuration production
+    npm install
+  displayName: 'Install node_modules'
+
+- script: |
+    npx ng build --configuration production
   displayName: 'Build Angular App'
 
 - task: PublishBuildArtifacts@1
